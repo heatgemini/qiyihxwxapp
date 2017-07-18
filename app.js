@@ -46,7 +46,7 @@ App({
               that.registerUser();
               return;
             }
-            if (res.data.code != 0) {
+            if (res.data.code == 0) {
               // 登录错误 
               wx.hideLoading();
               wx.showModal({
@@ -69,6 +69,7 @@ App({
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.getUserInfo({
           success: function (res) {
+            console.log(res)
             var iv = res.iv;
             var encryptedData = res.encryptedData;
             // 下面开始调用注册接口
@@ -88,5 +89,23 @@ App({
   globalData:{
     userInfo:null,
     subDomain:"mall"
-  }
+  },
+  getUserInfo: function (cb) {
+    var that = this;
+    if (this.globalData.userInfo) {
+      typeof cb == "function" && cb(this.globalData.userInfo)
+    } else {
+      //调用登录接口
+      wx.login({
+        success: function () {
+          wx.getUserInfo({
+            success: function (res) {
+              that.globalData.userInfo = res.userInfo;
+              typeof cb == "function" && cb(that.globalData.userInfo)
+            }
+          })
+        }
+      });
+    }
+  },
 })

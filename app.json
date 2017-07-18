@@ -8,11 +8,12 @@
     "pages/address-add/index",
     "pages/order-list/index",
     "pages/order-details/index",
-    "pages/wuliu/index"
+    "pages/wuliu/index",
+    "pages/me/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#63c6f0",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
   },
@@ -20,7 +21,7 @@
     "color": "#6e6d6b",
     "selectedColor": "#e64340",
     "borderStyle": "white",
-    "backgroundColor": "#fff",
+    "backgroundColor": "#63c6f0",
     "box-shadow":"0 0 6px 0",
     "list": [{
      "pagePath": "pages/index/index",
@@ -37,6 +38,11 @@
       "iconPath": "images/nav/order-off.png",
       "selectedIconPath": "images/nav/order-on.png",
       "text": "订单"
+    },{
+      "pagePath": "pages/me/index",
+      "iconPath": "images/nav/order-off.png",
+      "selectedIconPath": "images/nav/order-on.png",
+      "text": "我"
     }]
   }
 }
