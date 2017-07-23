@@ -7,7 +7,7 @@ Page({
     tabClass: ["", "", "", "", ""],
     stepList:[],
     color: "red",
-    backcolor:"#777"
+    backcolor:"#eee"
   },
   statusTap:function(e){
      var curType =  e.currentTarget.dataset.index;
