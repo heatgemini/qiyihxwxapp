@@ -52,7 +52,7 @@
 .wx-head-img{
     width: 200rpx;
     height: 200rpx;
-    margin-bottom: 31rpx;
+    margin-bottom: 10rpx;
 }
 .no-order .text{
     font-size:28rpx;

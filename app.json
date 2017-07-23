@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/me/index",
     "pages/index/index",
     "pages/goods-details/index",
     "pages/shop-cart/index",
@@ -8,8 +9,7 @@
     "pages/address-add/index",
     "pages/order-list/index",
     "pages/order-details/index",
-    "pages/wuliu/index",
-    "pages/me/index"
+    "pages/wuliu/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
