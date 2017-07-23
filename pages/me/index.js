@@ -4,7 +4,10 @@ Page({
   data:{
     userInfo: {},
     currentTpye:0,
-    tabClass: ["", "", "", "", ""]
+    tabClass: ["", "", "", "", ""],
+    stepList:[],
+    color: "red",
+    backcolor:"#777"
   },
   statusTap:function(e){
      var curType =  e.currentTarget.dataset.index;
@@ -52,6 +55,28 @@ Page({
     app.sendTplMsg(e.detail.formId, '你从哪里了');
   },
   formReset: function(e) {
-    console.log('form发生了reset事件:', e.detail.formId)
+    var that = this;
+    var id = e.detail.target.id;
+    console.log(e.detail.target.id);
+    if('wxrun' == id){
+      app.wxRunData(function (stepList) {
+        //更新数据
+        that.setData({
+          stepList: stepList
+        })
+      });
+    }else{
+       console.log('2222');
+    } 
+   
+  },
+  showtime: function(e){
+    console.log(Math.random().toString(16).substr(2, 6));
+    var color = Math.random().toString(16).substr(2, 6); 
+    var backcolor = Math.random().toString(16).substr(2, 6);
+    this.setData({
+      color: '#' + color,
+      backcolor: '#' + backcolor
+    })
   }
 })

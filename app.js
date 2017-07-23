@@ -117,9 +117,10 @@ App({
       success: function (res) {
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.request({
-          url: that.data.requestUrl.replace('URL', 'http://qiyihx.com/api/wxapp/get_openid.php?js_code=' + code + '&form_id=' + formId),
+          url: that.data.requestUrl.replace('URL', 'http://qiyihx.com/api/wxapp/sendTplMsg.php?code=' + code + '&form_id=' + formId),
           success: function (res) {
             var result = res.data.result;
+            console.log(res.data);
             wx.showModal({
               title: '提示',
               content: result.errcode == 0 ? '发送成功' : '发送失败:' + result.errcode,
@@ -130,4 +131,38 @@ App({
       }
     });
   },
+  wxRunData: function (cb) {
+    var that = this;
+    wx.login({
+      success: function (res) {
+        var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
+        wx.getWeRunData({
+          success(res) {
+            const encryptedData = encodeURIComponent(res.encryptedData);
+            const iv = encodeURIComponent(res.iv);
+            var url = 'http://qiyihx.com/api/wxapp/wxRunData.php?code=' + code + '&encryptedData=' + encryptedData + '&iv=' + iv;
+            url = that.data.requestUrl.replace('URL', url);  
+            console.log(url);
+            wx.request({
+              url: url,
+              success: function (res) {
+                var result = res.data;
+                console.log(result);
+               
+                that.globalData.stepList = res.data;
+                cb(that.globalData.stepList);
+                wx.showModal({
+                  title: '提示',
+                  content: result,
+                  showCancel: false
+                })
+
+              }
+            })
+          }
+        })
+      }
+    });
+  },
+
 })

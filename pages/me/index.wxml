@@ -1,17 +1,20 @@
 <view class="container">
    
-    <view class="no-order" hidden="{{orderList ? true : false}}">
+    <view class="mine" style="background:{{backcolor}}; color:{{color}};">
         <image src="{{userInfo.avatarUrl}}" class="wx-head-img"></image>
-        <view class="text">{{userInfo.nickName}}</view>
+        <label class="nickName">{{userInfo.nickName}}</label>
     </view>
 
-    <form bindsubmit="formSubmit" report-submit="true" bindreset="formReset">
-      <view class="section">
-        <input name="input" placeholder="请输入您的幻想" />
-        <textarea  name="input" placeholder="请输入您的幻想内容" />
-      </view>
+    <form class="menu" bindsubmit="formSubmit" report-submit="true" bindreset="formReset">
       <view class="btn-area">
-        <button formType="submit">提交审核</button>
+        <button formType="submit">提交</button>
+        <button formType="reset" id="wxrun">微信运动</button> 
+        <button bindtap="showtime" hover-class="hid" id="myfork" >我的发布</button>    
       </view>
     </form>
+
+     <view wx:for="{{stepList}}" wx:for-item="step" wx:for-index="id"> 
+    {{id}}: {{step:1}}
+    </view>
+    
 </view>
