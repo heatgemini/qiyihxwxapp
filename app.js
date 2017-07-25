@@ -13,7 +13,7 @@ App({
         key: 'mallName'
       },
       success: function(res) {
-        wx.setStorageSync('mallName', res.data.data.value);
+        wx.setStorageSync('mallName', res.data.value);
       }
     })
     this.login();
@@ -59,7 +59,7 @@ App({
               })
               return;
             }
-            that.globalData.token = res.data.data.token;
+            that.globalData.token = res.data.token;
           }
         })
       }
@@ -148,15 +148,8 @@ App({
               success: function (res) {
                 var result = res.data;
                 console.log(result);
-               
-                that.globalData.stepList = res.data;
-                cb(that.globalData.stepList);
-                wx.showModal({
-                  title: '提示',
-                  content: result,
-                  showCancel: false
-                })
-
+                that.globalData.stepList = result;
+                cb(that.globalData.stepList);   
               }
             })
           }

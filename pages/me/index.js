@@ -5,7 +5,7 @@ Page({
     userInfo: {},
     currentTpye:0,
     tabClass: ["", "", "", "", ""],
-    stepList:[],
+    stepList:"",
     color: "red",
     backcolor:"#eee"
   },
@@ -54,20 +54,19 @@ Page({
     console.log('form发生了submit事件，携带数据为：', e.detail.formId)
     app.sendTplMsg(e.detail.formId, '你从哪里了');
   },
-  formReset: function(e) {
+  wxrun: function(e) {
     var that = this;
-    var id = e.detail.target.id;
-    console.log(e.detail.target.id);
-    if('wxrun' == id){
-      app.wxRunData(function (stepList) {
-        //更新数据
-        that.setData({
-          stepList: stepList
-        })
-      });
-    }else{
-       console.log('2222');
-    } 
+    app.wxRunData(function (stepList) {
+      //更新数据
+      that.setData({
+        stepList: stepList
+      })
+      wx.showModal({
+        title: '提示',
+        content: '您的当日步数 ：' + stepList,
+        showCancel: false
+      })
+    });
    
   },
   showtime: function(e){

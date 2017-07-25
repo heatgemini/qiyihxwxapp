@@ -8,13 +8,9 @@
     <form class="menu" bindsubmit="formSubmit" report-submit="true" bindreset="formReset">
       <view class="btn-area">
         <button formType="submit">提交</button>
-        <button formType="reset" id="wxrun">微信运动</button> 
-        <button bindtap="showtime" hover-class="hid" id="myfork" >我的发布</button>    
+        <button bindtap="wxrun">微信运动</button> 
+        <button bindtap="showtime" hover-class="hid" >我的发布</button>    
       </view>
     </form>
 
-     <view wx:for="{{stepList}}" wx:for-item="step" wx:for-index="id"> 
-    {{id}}: {{step:1}}
-    </view>
-    
 </view>
