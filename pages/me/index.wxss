@@ -45,3 +45,7 @@
 .btn-area button{
   width: 100%;
 }
+
+.screen_section{
+  width: 100%;
+}

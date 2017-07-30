@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/me/index",
-    "pages/index/index",
+    
+    "pages/index/index","pages/me/index",
     "pages/goods-details/index",
     "pages/shop-cart/index",
     "pages/to-pay-order/index",
@@ -28,20 +28,10 @@
       "iconPath": "images/nav/home-off.png",
       "selectedIconPath": "images/nav/home-on.png",
       "text": "首页"
-    }, {
-      "pagePath": "pages/shop-cart/index",
-      "iconPath": "images/nav/cart-off.png",
-      "selectedIconPath": "images/nav/cart-on.png",
-      "text": "购物车"
-    }, {
-      "pagePath": "pages/order-list/index",
-      "iconPath": "images/nav/order-off.png",
-      "selectedIconPath": "images/nav/order-on.png",
-      "text": "订单"
     },{
       "pagePath": "pages/me/index",
-      "iconPath": "images/nav/order-off.png",
-      "selectedIconPath": "images/nav/order-on.png",
+      "iconPath": "images/nav/iconfont-user.png",
+      "selectedIconPath": "images/nav/iconfont-user-active.png",
       "text": "我"
     }]
   }

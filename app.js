@@ -1,21 +1,13 @@
 //app.js
 App({
-  data: {
+  globalData: {
+    userInfo: null,
+    subDomain: "mall",
     requestUrl: "https://wxapi.hotapp.cn/proxy/?appkey=hotapp2427615&url=URL",
-    json:""
+    apiDomain: "http://qiyihx.com/api"
   },
   onLaunch: function () {
     var that = this;
-    //  获取商城名称
-    wx.request({
-      url: 'https://api.it120.cc/'+ that.globalData.subDomain +'/config/get-value',
-      data: {
-        key: 'mallName'
-      },
-      success: function(res) {
-        wx.setStorageSync('mallName', res.data.value);
-      }
-    })
     this.login();
   },
   login : function () {
@@ -89,10 +81,7 @@ App({
       }
     })
   },
-  globalData:{
-    userInfo:null,
-    subDomain:"mall"
-  },
+  
   getUserInfo: function (cb) {
     var that = this;
     if (this.globalData.userInfo) {
@@ -104,6 +93,7 @@ App({
           wx.getUserInfo({
             success: function (res) {
               that.globalData.userInfo = res.userInfo;
+              console.log(res.userInfo);
               typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })
@@ -117,7 +107,7 @@ App({
       success: function (res) {
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.request({
-          url: that.data.requestUrl.replace('URL', 'http://qiyihx.com/api/wxapp/sendTplMsg.php?code=' + code + '&form_id=' + formId),
+          url: that.globalData.requestUrl.replace('URL', 'http://qiyihx.com/api/wxapp/sendTplMsg.php?code=' + code + '&form_id=' + formId),
           success: function (res) {
             var result = res.data.result;
             console.log(res.data);
@@ -141,8 +131,7 @@ App({
             const encryptedData = encodeURIComponent(res.encryptedData);
             const iv = encodeURIComponent(res.iv);
             var url = 'http://qiyihx.com/api/wxapp/wxRunData.php?code=' + code + '&encryptedData=' + encryptedData + '&iv=' + iv;
-            url = that.data.requestUrl.replace('URL', url);  
-            console.log(url);
+            url = that.globalData.requestUrl.replace('URL', url);  
             wx.request({
               url: url,
               success: function (res) {

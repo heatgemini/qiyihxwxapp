@@ -15,7 +15,8 @@ Page({
     activeCategoryId: 0,
     goods:[],
     scrollTop:"0",
-    loadingMoreHidden:true
+    loadingMoreHidden:true,
+    requestUrl: "https://wxapi.hotapp.cn/proxy/?appkey=hotapp2427615&url=URL"
   },
 
   tabClick: function (e) {
@@ -73,9 +74,9 @@ Page({
     })
     */
     wx.request({
-      url: 'https://api.it120.cc/'+ app.globalData.subDomain +'/banner/list',
+      url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/list.php'),
       data: {
-        key: 'mallName'
+        type: '1'
       },
       success: function(res) {
         that.setData({

@@ -51,7 +51,6 @@ Page({
   
   },
   formSubmit: function(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.formId)
     app.sendTplMsg(e.detail.formId, '你从哪里了');
   },
   wxrun: function(e) {
@@ -77,5 +76,60 @@ Page({
       color: '#' + color,
       backcolor: '#' + backcolor
     })
+  }, 
+  screen_slider4change: function (e) {
+    if (wx.setScreenBrightness) {
+      wx.setScreenBrightness({
+        value: e.detail.value/100,
+      })
+    } else {
+      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
+  },
+  getSystemInfoSync: function(e){
+    try {
+      var res = wx.getSystemInfoSync();
+      wx.showModal({
+        title: '提示',
+        content: '手机型号 : ' + res.model + ' | \n操作系统版本 : ' + res.system
+      })
+    } catch (e) {
+      wx.showModal({
+        title: '提示',
+        content: '获取失败，请重试'
+      })
+    }
+  }, 
+  scanCode: function (e) {
+    wx.scanCode({
+      success: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: res.scanType+" : " + res.result
+        })
+      }
+    }) 
+  },
+  callPhone: function (e){
+    wx.makePhoneCall({
+      phoneNumber: '18761169562'
+    })
+  },
+  vibrateLong: function(e){
+    if (wx.vibrateLong) {
+      console.log('vibrateLong');
+      wx.vibrateLong({
+      })
+    } else {
+      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
   }
 })
