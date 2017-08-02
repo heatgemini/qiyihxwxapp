@@ -68,7 +68,7 @@ Page({
     });
    
   },
-  showtime: function(e){
+  showcolor: function(e){
     console.log(Math.random().toString(16).substr(2, 6));
     var color = Math.random().toString(16).substr(2, 6); 
     var backcolor = Math.random().toString(16).substr(2, 6);
@@ -95,7 +95,7 @@ Page({
       var res = wx.getSystemInfoSync();
       wx.showModal({
         title: '提示',
-        content: '手机型号 : ' + res.model + ' | \n操作系统版本 : ' + res.system
+        content: '手机型号 : ' + res.model + '\n操作系统版本 : ' + res.system
       })
     } catch (e) {
       wx.showModal({
