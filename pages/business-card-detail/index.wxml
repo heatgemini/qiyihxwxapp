@@ -1,0 +1,38 @@
+<view class="container"> 
+    <view class="mine">
+        <view class="line_head_cls" bindtap="edit_info" data-id="head_img">
+          <text class="line_key_cls">头像</text>
+          <view class="line_val_cls">
+            <image src="{{userInfo.avatarUrl}}" class="wx-head-img"></image>    
+          </view>
+        </view>
+        <view class="line"></view> 
+        <view class="line_cls" bindtap="edit_info" data-id="head_img" data-val="{{userInfo.nickName}}">
+          <text class="line_key_cls">昵称</text>
+          <text class="line_val_cls">{{userInfo.nickName}}</text>
+        </view>
+        <view class="line"></view>
+        <view class="line_cls" bindtap="edit_info" data-id="name" data-val="张庆">
+          <text class="line_key_cls" >名字</text>
+          <text class="line_val_cls">张庆</text>
+        </view>
+    </view>
+    <view class="mine">    
+        <view class="line"></view>
+         <view class="line_cls" bindtap="edit_info" data-id="wechat_number" data-val="heatgemini">
+          <text class="line_key_cls" >微信号</text>
+          <text class="line_val_cls">heatgemini</text>
+        </view>
+        <view class="line"></view>
+        <view class="line_cls" bindtap="edit_info" data-id="phone_number" data-val="18761169562">
+          <text class="line_key_cls">手机号</text>
+          <text class="line_val_cls">18761169562</text>
+        </view>
+        <view class="line"></view>
+        <view class="line_cls" bindtap="edit_info" data-id="email" data-val="zhang_qing@suixingpay.com">
+          <text class="line_key_cls">邮箱</text>
+          <text class="line_val_cls">zhang_qing@suixingpay.com</text>
+        </view>
+    </view>
+
+</view>

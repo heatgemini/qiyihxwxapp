@@ -1,5 +1,9 @@
 {
   "pages":[
+    
+    "pages/business-card-detail/index",
+    "pages/business-card-edit/index",
+    "pages/business-card/index",
     "pages/discover/index",
     "pages/index/index",
     "pages/me/index",
@@ -14,7 +18,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#63c6f0",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
   },
@@ -22,7 +26,7 @@
     "color": "#6e6d6b",
     "selectedColor": "#e64340",
     "borderStyle": "white",
-    "backgroundColor": "#63c6f0",
+    "backgroundColor": "#fff",
     "box-shadow":"0 0 6px 0",
     "list": [{
      "pagePath": "pages/index/index",

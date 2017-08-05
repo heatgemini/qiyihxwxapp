@@ -1,0 +1,22 @@
+<view class="container">
+   
+    <view class="mine">
+        <image src="{{userInfo.avatarUrl}}" class="wx-head-img"></image>    
+    </view>
+    <view class="nickName">
+        {{userInfo.nickName}}
+    </view>
+    <view class="business-card">
+       <form bindsubmit="addContact" report-submit="true" bindreset="formReset">
+        <view class="btn-area">
+            <button class="addcontact" formType="submit">添加到通讯录</button>
+            <button class="editcontact" bindtap="editcontact" >编辑我的通讯录</button>
+        </view>
+      </form>
+    </view>
+   
+    <view class="call">
+      <image bindtap="callme" class="callme" src="/images/call.png"></image>
+    </view>
+
+</view>
