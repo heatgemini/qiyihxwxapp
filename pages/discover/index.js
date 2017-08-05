@@ -108,5 +108,10 @@ Page({
         }
       })
     }
+  },
+  wxappcontact: function(e){
+    wx.navigateTo({
+      url: "/pages/business-card/index"
+    })
   }
 })

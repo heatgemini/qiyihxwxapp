@@ -52,66 +52,38 @@ Page({
   },
   addContact: function(e) {
     var userInfo = this.data.userInfo;
-    wx.addPhoneContact({
-      photoFilePath: userInfo.avatarUrl,
-      nickName: userInfo.nickName,
-      lastName: '张庆',
-      middleName: '张庆',
-      firstName: '张庆',
-      remark: '只有我自己知道',
-      mobilePhoneNumber: '18761169562',
-      weChatNumber: 'heatgemini',
-      addressCountry: '中国',
-      addressState: '',
-      addressCity: '',
-      addressStreet: '',
-      addressPostalCode: '',
-      organization: '',
-      title: '',
-      workFaxNumber: '',
-      workPhoneNumber: '',
-      hostNumber: '',
-      email: '616743670@qq.com',
-      url: 'http://qiyihx.com',
-      workAddressCountry: '',
-      workAddressState: '',
-      workAddressCity: '',
-      workAddressStreet: '',
-      workAddressPostalCode: '',
-      homeFaxNumber: '',
-      homePhoneNumber: '',
-      homeAddressCountry: '',
-      homeAddressState: '',
-      homeAddressCity: '',
-      homeAddressStreet: '',
-      homeAddressPostalCode: '',
-      success: function (res) {
+    app.getContact(function(data){
+      console.log(data);
+      if (data.data == '' || data.data.mobile_phone_number == '') {
         wx.showModal({
           title: '提示',
-          content: '添加通讯录成功',
-          showCancel: false
+          content: '请先编辑通讯录',
         })
-       },
-      fail: function (res) {
-        wx.showModal({
-          title: '提示',
-          content: '添加通讯录失败，请重试',
-          showCancel: false
-        })
-      },
-      complete: function (res) { },
+      }else{
+        app.addContact(data.data);
+      }
     });
    // app.sendTplMsg(e.detail.formId, '添加通讯录');
   },
   editcontact: function(e){
     console.log('编辑通讯录');
     wx.navigateTo({
-      url: "/pages/business-card-edit/detail"
+      url: "/pages/business-card-detail/index"
     })
   },
   callme: function (e){
-    wx.makePhoneCall({
-      phoneNumber: '18761169562'
-    })
+    app.getContact(function (data) {
+      console.log(data);
+      if (data.data == '' || data.data.mobile_phone_number == '') {
+        wx.showModal({
+          title: '提示',
+          content: '请先编辑通讯录',
+        })
+      } else {
+        wx.makePhoneCall({
+          phoneNumber: data.data.mobile_phone_number
+        })
+      }
+    });  
   }
 })

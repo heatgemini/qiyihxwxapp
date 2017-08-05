@@ -93,7 +93,6 @@ App({
           wx.getUserInfo({
             success: function (res) {
               that.globalData.userInfo = res.userInfo;
-              console.log(res.userInfo);
               typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })
@@ -146,5 +145,93 @@ App({
       }
     });
   },
-
+  saveContact: function (key, val) {
+    var that = this;
+    wx.login({
+      success: function (res) {
+        var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
+        wx.request({
+          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/area/save.php'),
+          data: {
+            code: code,
+            key: key,
+            val: val
+          },
+          success: function (res) {
+            console.log(res.data);
+          }
+        })
+      }
+    });
+  },
+  getContact:function(cb){
+    var that = this;
+    wx.login({
+      success: function (res) {
+        var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
+        wx.request({
+          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/area/detail.php'),
+          data: {
+            code: code
+          },
+          success: function (res) {
+            var data = res.data;
+            cb(data);
+          }
+        })
+      }
+    });
+  },
+  addContact: function(contact){
+    var that = this;
+    wx.addPhoneContact({
+      photoFilePath: contact.photo_file_path,
+      nickName: contact.nick_name,
+      lastName: contact.last_name,
+      middleName: contact.middle_name,
+      firstName: contact.firstName,
+      remark: contact.remark,
+      mobilePhoneNumber: contact.mobile_phone_number,
+      weChatNumber: contact.weChat_number,
+      addressCountry: contact.address_country,
+      addressState: contact.address_state,
+      addressCity: contact.address_city,
+      addressStreet: contact.address_street,
+      addressPostalCode: contact.address_postal_code,
+      organization: contact.organization,
+      title: contact.title,
+      workFaxNumber: contact.work_fax_number,
+      workPhoneNumber: contact.work_phone_number,
+      hostNumber: contact.host_number,
+      email: contact.email,
+      url: contact.url,
+      workAddressCountry: contact.work_address_country,
+      workAddressState: contact.work_address_state,
+      workAddressCity: contact.work_address_city,
+      workAddressStreet: contact.work_address_street,
+      workAddressPostalCode: contact.work_address_postal_code,
+      homeFaxNumber: contact.home_fax_number,
+      homePhoneNumber: contact.home_phone_number,
+      homeAddressCountry: contact.home_address_country,
+      homeAddressState: contact.home_address_state,
+      homeAddressCity: contact.home_address_city,
+      homeAddressStreet: contact.home_address_street,
+      homeAddressPostalCode: contact.home_address_postalCode,
+      success: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: '添加通讯录成功',
+          showCancel: false
+        })
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: '添加通讯录失败，请重试',
+          showCancel: false
+        })
+      },
+      complete: function (res) { },
+    });
+  }
 })

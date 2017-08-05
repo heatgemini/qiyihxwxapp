@@ -1,4 +1,3 @@
-var wxpay = require('../../utils/pay.js')
 var app = getApp()
 Page({
   data:{
@@ -7,9 +6,11 @@ Page({
     tabClass: ["", "", "", "", ""],
     stepList:"",
     color: "red",
-    backcolor:"#eee"
+    backcolor:"#eee",
+    wxappcontact:{}
   },
   statusTap:function(e){
+    console.log('234333');
      var curType =  e.currentTarget.dataset.index;
      this.data.currentTpye = curType
      this.setData({
@@ -21,92 +22,66 @@ Page({
     // 生命周期函数--监听页面加载
     console.log('onLoad')
     var that = this;
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-    })
-    app.registerUser()
+    wx.login({
+      success: function (res) {
+        var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
+        wx.request({
+          url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/detail.php'),
+          data: {
+            code: code
+          },
+          success: function (res) {
+            var data = res.data;
+            app.getUserInfo(function (userInfo) {
+              //更新数据
+              that.setData({
+                wxappcontact: { "photo_file_path": userInfo.avatarUrl, "nick_name": userInfo.nickName }
+              })
+              app.saveContact("photo_file_path", userInfo.avatarUrl);
+              app.saveContact("nick_name", userInfo.nickName);
+              console.log('----->'+data.data);
+              if (data.data != null && data.data != "") {
+                data.data.nick_name = userInfo.nickName;
+                data.data.photo_file_path = userInfo.avatarUrl;
+                that.setData({
+                  wxappcontact: data.data
+                });
+              }  
+            })  
+          }
+        })
+      }
+    });
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
+    console.log('onReady');
  
   },
   onHide:function(){
     // 生命周期函数--监听页面隐藏
- 
+    console.log('onHide');
   },
   onUnload:function(){
     // 生命周期函数--监听页面卸载
- 
+    console.log('onUnload');
   },
   onPullDownRefresh: function() {
     // 页面相关事件处理函数--监听用户下拉动作
-   
+    console.log('onPullDownRefresh');
   },
   onReachBottom: function() {
     // 页面上拉触底事件的处理函数
-  
-  },
-  addContact: function(e) {
-    var userInfo = this.data.userInfo;
-    wx.addPhoneContact({
-      photoFilePath: userInfo.avatarUrl,
-      nickName: userInfo.nickName,
-      lastName: '张庆',
-      middleName: '张庆',
-      firstName: '张庆',
-      remark: '只有我自己知道',
-      mobilePhoneNumber: '18761169562',
-      weChatNumber: 'heatgemini',
-      addressCountry: '中国',
-      addressState: '',
-      addressCity: '',
-      addressStreet: '',
-      addressPostalCode: '',
-      organization: '',
-      title: '',
-      workFaxNumber: '',
-      workPhoneNumber: '',
-      hostNumber: '',
-      email: '616743670@qq.com',
-      url: 'http://qiyihx.com',
-      workAddressCountry: '',
-      workAddressState: '',
-      workAddressCity: '',
-      workAddressStreet: '',
-      workAddressPostalCode: '',
-      homeFaxNumber: '',
-      homePhoneNumber: '',
-      homeAddressCountry: '',
-      homeAddressState: '',
-      homeAddressCity: '',
-      homeAddressStreet: '',
-      homeAddressPostalCode: '',
-      success: function (res) {
-        wx.showModal({
-          title: '提示',
-          content: '添加通讯录成功',
-          showCancel: false
-        })
-       },
-      fail: function (res) {
-        wx.showModal({
-          title: '提示',
-          content: '添加通讯录失败，请重试',
-          showCancel: false
-        })
-      },
-      complete: function (res) { },
-    });
-   // app.sendTplMsg(e.detail.formId, '添加通讯录');
+    console.log('onReachBottom');
   },
   edit_info: function(e){
     console.log('修改通讯录' + e.currentTarget.dataset.id);
+    var val = e.currentTarget.dataset.val;
+    if (val == null || val == 'undefined'){
+      val = "";
+    }
     wx.navigateTo({
-      url: "/pages/business-card-edit/index?id=" + e.currentTarget.dataset.id+"&val=" + e.currentTarget.dataset.val
+      url: "/pages/business-card-edit/index?id=" + e.currentTarget.dataset.id + "&val=" + val
     })
   }
 })

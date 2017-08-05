@@ -1,37 +1,37 @@
 <view class="container"> 
     <view class="mine">
-        <view class="line_head_cls" bindtap="edit_info" data-id="head_img">
+        <view class="line_head_cls">
           <text class="line_key_cls">头像</text>
           <view class="line_val_cls">
-            <image src="{{userInfo.avatarUrl}}" class="wx-head-img"></image>    
+            <image src="{{wxappcontact.photo_file_path}}" class="wx-head-img"></image>    
           </view>
         </view>
         <view class="line"></view> 
-        <view class="line_cls" bindtap="edit_info" data-id="head_img" data-val="{{userInfo.nickName}}">
+        <view class="line_cls" data-id="nick_name" data-val="{{wxappcontact.nick_name}}">
           <text class="line_key_cls">昵称</text>
-          <text class="line_val_cls">{{userInfo.nickName}}</text>
+          <text class="line_val_cls">{{wxappcontact.nick_name}}</text>
         </view>
         <view class="line"></view>
-        <view class="line_cls" bindtap="edit_info" data-id="name" data-val="张庆">
-          <text class="line_key_cls" >名字</text>
-          <text class="line_val_cls">张庆</text>
+        <view class="line_cls" bindtap="edit_info" data-id="first_name" data-val="{{wxappcontact.first_name}}">
+          <text class="line_key_cls" >姓名</text>
+          <text class="line_val_cls">{{wxappcontact.first_name}}</text>
         </view>
     </view>
     <view class="mine">    
         <view class="line"></view>
-         <view class="line_cls" bindtap="edit_info" data-id="wechat_number" data-val="heatgemini">
+         <view class="line_cls" bindtap="edit_info" data-id="we_chat_number" data-val="{{wxappcontact.we_chat_number}}">
           <text class="line_key_cls" >微信号</text>
-          <text class="line_val_cls">heatgemini</text>
+          <text class="line_val_cls">{{wxappcontact.we_chat_number}}</text>
         </view>
         <view class="line"></view>
-        <view class="line_cls" bindtap="edit_info" data-id="phone_number" data-val="18761169562">
+        <view class="line_cls" bindtap="edit_info" data-id="mobile_phone_number" data-val="{{wxappcontact.mobile_phone_number}}">
           <text class="line_key_cls">手机号</text>
-          <text class="line_val_cls">18761169562</text>
+          <text class="line_val_cls">{{wxappcontact.mobile_phone_number}}</text>
         </view>
         <view class="line"></view>
-        <view class="line_cls" bindtap="edit_info" data-id="email" data-val="zhang_qing@suixingpay.com">
+        <view class="line_cls" bindtap="edit_info" data-id="email" data-val="{{wxappcontact.email}}">
           <text class="line_key_cls">邮箱</text>
-          <text class="line_val_cls">zhang_qing@suixingpay.com</text>
+          <text class="line_val_cls">{{wxappcontact.email}}</text>
         </view>
     </view>
 

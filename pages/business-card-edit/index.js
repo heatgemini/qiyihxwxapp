@@ -1,9 +1,8 @@
-var wxpay = require('../../utils/pay.js')
 var app = getApp()
 Page({
   data:{
     id: "",
-    val:""
+    wxappcontact:{}
   },
   statusTap:function(e){
      var curType =  e.currentTarget.dataset.index;
@@ -20,12 +19,6 @@ Page({
     });
   },
   save_info: function(e){
-    wx.showModal({
-      title: '234',
-      content: '保存通讯录' + e.detail.value + "--" + e.currentTarget.dataset.id,
-    })
-    wx.request({
-      url: 'https://www.baiduc.om',
-    })
+    app.saveContact(e.currentTarget.dataset.id, e.detail.value);
   }
 })
