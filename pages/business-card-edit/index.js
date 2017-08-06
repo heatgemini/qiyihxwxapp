@@ -19,6 +19,19 @@ Page({
     });
   },
   save_info: function(e){
-    app.saveContact(e.currentTarget.dataset.id, e.detail.value);
+    app.saveContact(e.currentTarget.dataset.id, e.detail.value,function(res){  
+      app.getContactByCode(function (res) {
+        var data = res.data;
+        if (data) {
+          var pages = getCurrentPages();
+          var currPage = pages[pages.length - 1];  //当前页面
+          var prevPage = pages[pages.length - 2]; //上一个页面
+          prevPage.setData({
+              wxappcontact: data
+          });
+        }
+        wx.navigateBack();
+      });
+    });  
   }
 })

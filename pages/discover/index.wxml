@@ -10,7 +10,7 @@
         <view class="clarity_bar">
             <label class="nickname">{{userInfo.nickName}}</label>
             <view class="slicing"></view> 
-            <image class="settools" src="../../images/settools.png"></image>
+            <image bindtap="settools" class="settools" src="../../images/settools.png"></image>
         </view>
     </view>
 

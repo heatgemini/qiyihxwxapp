@@ -33,8 +33,7 @@ Page({
           backgroundImg: res.data.data
         });
       }
-    })
-
+    });
     wx.request({
       url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/list.php'),
       data: {
@@ -46,7 +45,7 @@ Page({
           ideas: res.data.data
         });
       }
-    })
+    });
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
@@ -54,7 +53,6 @@ Page({
         userInfo: userInfo
       })
     })
-    app.registerUser()
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
@@ -115,6 +113,11 @@ Page({
   wxappcontact: function(e){
     wx.navigateTo({
       url: "/pages/business-card/index"
+    })
+  },
+  settools: function(e){
+    wx.navigateTo({
+      url: "/pages/business-card-detail/index"
     })
   }
 })

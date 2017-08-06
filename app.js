@@ -145,7 +145,7 @@ App({
       }
     });
   },
-  saveContact: function (key, val) {
+  saveContact: function (key, val,cb) {
     var that = this;
     wx.login({
       success: function (res) {
@@ -158,7 +158,9 @@ App({
             val: val
           },
           success: function (res) {
-            console.log(res.data);
+            if(cb){
+              cb(res.data);
+            } 
           }
         })
       }
@@ -202,7 +204,7 @@ App({
       nickName: contact.nick_name,
       lastName: contact.last_name,
       middleName: contact.middle_name,
-      firstName: contact.firstName,
+      firstName: contact.first_name,
       remark: contact.remark,
       mobilePhoneNumber: contact.mobile_phone_number,
       weChatNumber: contact.weChat_number,
@@ -237,14 +239,8 @@ App({
           showCancel: false
         })
       },
-      fail: function (res) {
-        wx.showModal({
-          title: '提示',
-          content: '添加通讯录失败，请重试',
-          showCancel: false
-        })
-      },
-      complete: function (res) { },
+      fail: function (res) {},
+      complete: function (res) {},
     });
   }
 })
