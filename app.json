@@ -1,10 +1,10 @@
 {
-  "pages":["pages/me/index",
+  "pages":[
     "pages/discover/index",
     "pages/business-card/index",
     "pages/business-card-detail/index",
     "pages/business-card-edit/index",
-    
+    "pages/me/index",
     "pages/goods-details/index",
     "pages/shop-cart/index",
     "pages/to-pay-order/index",
