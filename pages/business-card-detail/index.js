@@ -26,7 +26,7 @@ Page({
       success: function (res) {
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.request({
-          url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/detail.php'),
+          url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/detailByCode.php'),
           data: {
             code: code
           },

@@ -7,7 +7,8 @@ Page({
     tabClass: ["", "", "", "", ""],
     stepList:"",
     color: "red",
-    backcolor:"#eee"
+    backcolor:"#eee",
+    wxappcontact: {}
   },
   statusTap:function(e){
      var curType =  e.currentTarget.dataset.index;
@@ -21,14 +22,33 @@ Page({
     // 生命周期函数--监听页面加载
     console.log('onLoad')
     var that = this;
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-    })
-    app.registerUser()
+    var id = decodeURIComponent(options.scene);
+    if (id != 'undefined'){
+      app.getContact(id, function(res){
+        that.setData({
+          wxappcontact: res.data
+        });
+      });
+    }else{
+      app.getContactByCode(function(res){
+        var data = res.data;
+        app.getUserInfo(function (userInfo) {
+          //更新数据
+          that.setData({
+            wxappcontact: { "photo_file_path": userInfo.avatarUrl, "nick_name": userInfo.nickName }
+          })
+          app.saveContact("photo_file_path", userInfo.avatarUrl);
+          app.saveContact("nick_name", userInfo.nickName);
+          if (data) {
+            data.nick_name = userInfo.nickName;
+            data.photo_file_path = userInfo.avatarUrl;
+            that.setData({
+              wxappcontact: data
+            });
+          }
+        })
+      });
+    }
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
@@ -52,15 +72,18 @@ Page({
   },
   addContact: function(e) {
     var userInfo = this.data.userInfo;
-    app.getContact(function(data){
-      console.log(data);
-      if (data.data == '' || data.data.mobile_phone_number == '') {
+    app.getContactByCode(function(res){
+      console.log(res);
+      if (res.data == '' || res.data.mobile_phone_number == '') {
         wx.showModal({
           title: '提示',
           content: '请先编辑通讯录',
         })
       }else{
-        app.addContact(data.data);
+        if (wx.vibrateLong) {
+          wx.vibrateLong({})
+        } 
+        app.addContact(res.data);
       }
     });
    // app.sendTplMsg(e.detail.formId, '添加通讯录');
@@ -72,18 +95,19 @@ Page({
     })
   },
   callme: function (e){
-    app.getContact(function (data) {
-      console.log(data);
-      if (data.data == '' || data.data.mobile_phone_number == '') {
-        wx.showModal({
-          title: '提示',
-          content: '请先编辑通讯录',
-        })
-      } else {
-        wx.makePhoneCall({
-          phoneNumber: data.data.mobile_phone_number
-        })
-      }
-    });  
+    var mobile_phone_number = e.currentTarget.dataset.id;
+    if (mobile_phone_number) {
+      if (wx.vibrateLong) {
+        wx.vibrateLong({})
+      } 
+      wx.makePhoneCall({
+        phoneNumber: mobile_phone_number
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '请先编辑通讯录',
+      })
+    }  
   }
 })

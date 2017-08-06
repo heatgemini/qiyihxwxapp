@@ -1,10 +1,10 @@
 <view class="container">
    
     <view class="mine">
-        <image src="{{userInfo.avatarUrl}}" class="wx-head-img"></image>    
+        <image src="{{wxappcontact.photo_file_path}}" class="wx-head-img"></image>    
     </view>
     <view class="nickName">
-        {{userInfo.nickName}}
+        {{wxappcontact.nick_name}}
     </view>
     <view class="business-card">
        <form bindsubmit="addContact" report-submit="true" bindreset="formReset">
@@ -16,7 +16,7 @@
     </view>
    
     <view class="call">
-      <image bindtap="callme" class="callme" src="/images/call.png"></image>
+      <image bindtap="callme" data-id="{{wxappcontact.mobile_phone_number}}" class="callme" src="/images/call.png"></image>
     </view>
 
 </view>

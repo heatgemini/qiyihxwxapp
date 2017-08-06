@@ -164,13 +164,13 @@ App({
       }
     });
   },
-  getContact:function(cb){
+  getContactByCode:function(cb){
     var that = this;
     wx.login({
       success: function (res) {
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.request({
-          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/area/detail.php'),
+          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/area/detailByCode.php'),
           data: {
             code: code
           },
@@ -181,6 +181,19 @@ App({
         })
       }
     });
+  },
+  getContact: function (id, cb) {
+    var that = this;
+    wx.request({
+      url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/area/detail.php'),
+      data: {
+        id: id
+      },
+      success: function (res) {
+        var data = res.data;
+        cb(data);
+      }
+    })
   },
   addContact: function(contact){
     var that = this;

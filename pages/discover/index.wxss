@@ -36,7 +36,6 @@
   padding-left: 15rpx;
 }
 
-
 .clarity_bar{
   width: 100%;
   background: #000000;
@@ -116,9 +115,10 @@
 .content_cls{
   margin:0 auto;
   width: 90%; 
-  height: 340rpx;
+  height: 400rpx;
   text-align: center;
   position: relative;
+  z-index: auto;
 }
 
 .idea_img{
@@ -127,22 +127,21 @@
 }
 
 .content_text{
-
   position: absolute;
   height: auto;
 }
 
 .bar_t{
   width: 100;
-  height: 30px;
+  height: 30rpx;
 }
 
 .idea_title{
   position: absolute;
   left: 30rpx;
-  bottom: 15rpx;
-  color: #000000;
-  z-index: 9;
+  bottom: 20rpx;
+  color: #000;
+  z-index: 10;
 
 }
 
@@ -151,7 +150,10 @@
   background: #fff;
   position: absolute;
   bottom:0;
-  opacity:0.8;
   height: 80rpx;
+}
 
+
+.top-image{
+  width: 100%;
 }

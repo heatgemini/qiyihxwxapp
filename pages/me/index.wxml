@@ -1,26 +1,33 @@
 <view class="container">
-   
-    <view class="mine" style="background:{{backcolor}}; color:{{color}};">
-        <image src="{{userInfo.avatarUrl}}" class="wx-head-img"></image>
-        <label class="nickName">{{userInfo.nickName}}</label>
+
+    <view class="mine">
+        <view class="line_head_cls" bindtap="contact">
+          <text class="line_val_cls">{{userInfo.nickName}}</text>
+          <view class="line_key_cls">
+            <image src="{{userInfo.avatarUrl}}" class="wx-head-img"></image>    
+          </view>
+          <view class="right_icon_cls">
+            <image class="right_icon_img" src="../../images/arrow-right.png"></image>
+          </view>
+        </view>
     </view>
 
-    <form class="menu" bindsubmit="formSubmit" report-submit="true" bindreset="formReset">
-      <view class="btn-area">
-        <button formType="submit">发送消息</button>
-        <button bindtap="wxrun">微信运动</button> 
-        <button bindtap="showcolor" hover-class="hid" >切屏</button>
-        <button bindtap="scanCode" hover-class="hid" >微信扫码</button>
-        <button bindtap="getSystemInfoSync" hover-class="hid" >系统信息</button>
-        <button bindtap="callPhone" hover-class="hid" >拨打电话</button>
-        <button bindtap="vibrateLong" hover-class="hid" >振动</button>
-     </view>
-    </form>
-
-    <view class="section section_gap" class="screen_section">
-      <view class="body-view">
-        <slider bindchange="screen_slider4change" min="0" max="100" show-value/>
-      </view>
+    <view class="mine">
+        <view class="line"></view>
+        <view class="line_cls" bindtap="scanCode">
+          <text class="line_key_cls">微信扫一扫</text>
+        </view>
+        <view class="line"></view>
+        <view class="line_cls" bindtap="wxrun">
+          <text class="line_key_cls">微信运动</text>
+          <text class="line_val2_cls">{{stepList}}</text>
+        </view>
+        <view class="line"></view>
+        <view class="line_cls" bindtap="contact">
+          <text class="line_key_cls">私人名片</text>
+          <view class="right_icon_cls">
+            <image class="right_icon_img" src="../../images/arrow-right.png"></image>
+          </view>
+        </view>
     </view>
-
 </view>

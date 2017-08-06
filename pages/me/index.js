@@ -27,8 +27,13 @@ Page({
       that.setData({
         userInfo: userInfo
       })
-    })
-    app.registerUser()
+    });
+    app.wxRunData(function (stepList) {
+      //更新数据
+      that.setData({
+        stepList: stepList
+      })
+    });
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
@@ -65,8 +70,7 @@ Page({
         content: '您的当日步数 ：' + stepList,
         showCancel: false
       })
-    });
-   
+    }); 
   },
   showcolor: function(e){
     console.log(Math.random().toString(16).substr(2, 6));
@@ -131,5 +135,10 @@ Page({
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
     }
+  },
+  contact: function(e){
+    wx.navigateTo({
+      url: "/pages/business-card-detail/index"
+    })
   }
 })

@@ -25,7 +25,8 @@ Page({
     wx.request({
       url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/random.php'),
       data: {
-        type: '1'
+        type: '1',
+        status: '1'
       },
       success: function (res) {
         that.setData({
@@ -37,7 +38,8 @@ Page({
     wx.request({
       url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/list.php'),
       data: {
-        type: '1'
+        type: '1',
+        status: '1'
       },
       success: function (res) {
         that.setData({
@@ -99,7 +101,8 @@ Page({
         url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/random.php'),
         data: {
           type: '1',
-          id: e.currentTarget.dataset.id
+          id: e.currentTarget.dataset.id,
+          status: '1'
         },
         success: function (res) {
           that.setData({
