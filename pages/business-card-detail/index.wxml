@@ -45,6 +45,22 @@
             <image class="right_icon_img" src="../../images/arrow-right.png"></image>
           </view>
         </view>
+        <view class="line"></view>
+        <view class="line_cls" bindtap="edit_info" data-id="organization" data-val="{{wxappcontact.organization}}">
+          <text class="line_key_cls">公司</text>
+          <text class="line_val_cls">{{wxappcontact.organization}}</text>
+          <view class="right_icon_cls">
+            <image class="right_icon_img" src="../../images/arrow-right.png"></image>
+          </view>
+        </view>
+        <view class="line"></view>
+        <view class="line_cls" bindtap="edit_info" data-id="title" data-val="{{wxappcontact.title}}">
+          <text class="line_key_cls">职位</text>
+          <text class="line_val_cls">{{wxappcontact.title}}</text>
+          <view class="right_icon_cls">
+            <image class="right_icon_img" src="../../images/arrow-right.png"></image>
+          </view>
+        </view>
     </view>
 
     <view class="wxappcode">

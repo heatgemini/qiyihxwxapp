@@ -119,5 +119,21 @@ Page({
     wx.navigateTo({
       url: "/pages/business-card-detail/index"
     })
+  }, 
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '开启你的幻想旅行',
+      path: '/pages/discover/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

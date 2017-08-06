@@ -7,9 +7,9 @@
         {{wxappcontact.nick_name}}
     </view>
     <view class="business-card">
-       <form bindsubmit="addContact" report-submit="true" bindreset="formReset">
+       <form report-submit="true" bindreset="formReset">
         <view class="btn-area">
-            <button class="addcontact" formType="submit">添加到通讯录</button>
+            <button class="addcontact" bindtap="addcontact" data-id="{{wxappcontact.id}}">添加到通讯录</button>
             <button class="editcontact" bindtap="editcontact" >编辑我的通讯录</button>
         </view>
       </form>
