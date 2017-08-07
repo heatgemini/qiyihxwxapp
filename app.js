@@ -207,7 +207,7 @@ App({
       firstName: contact.first_name,
       remark: contact.remark,
       mobilePhoneNumber: contact.mobile_phone_number,
-      weChatNumber: contact.weChat_number,
+      weChatNumber: contact.we_chat_number,
       addressCountry: contact.address_country,
       addressState: contact.address_state,
       addressCity: contact.address_city,
@@ -241,6 +241,29 @@ App({
       },
       fail: function (res) {},
       complete: function (res) {},
+    });
+  },
+  addActivity: function(data, formId, cb) {
+    var that = this;
+    wx.login({
+      success: function (res) {
+        var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
+        wx.request({
+          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/activity/save.php'),
+          data: {
+            code : code,
+            title : data.title,
+            detail: data.detail,
+            date: data.date,
+            time: data.time,
+            formId: formId
+          },
+          success: function (res) {
+            var data = res.data;
+            cb(data);
+          }
+        })
+      }
     });
   }
 })

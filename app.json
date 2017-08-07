@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/activity-distribute/index",
+    "pages/activity-edit/index",
     "pages/discover/index",
     "pages/business-card/index",
     "pages/business-card-detail/index",
