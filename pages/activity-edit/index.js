@@ -2,7 +2,8 @@ var app = getApp()
 Page({
   data:{
     id: "",
-    val:""
+    val:"",
+    valname:""
   },
   statusTap:function(e){
      var curType =  e.currentTarget.dataset.index;
@@ -15,7 +16,8 @@ Page({
   onLoad:function(options){
     this.setData({
       id: options.id,
-      val: options.val
+      val: options.val,
+      valname: options.valname
     });
   },
   save_info: function(e){
@@ -31,6 +33,14 @@ Page({
     }else if (id == 'detail'){
       prevPage.setData({
         detail: val
+      });
+    } else if (id == 'location') {
+      prevPage.setData({
+        location: val
+      });
+    } else if (id == 'userName') {
+      prevPage.setData({
+        userName: val
       });
     }
     wx.navigateBack();

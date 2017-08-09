@@ -3,12 +3,12 @@ var app = getApp()
 Page({
   data:{ 
     currentTpye:0,
-    date: util.formatDate(new Date),
-    time: util.formatTime(new Date),
-    title:"",
-    detail:"",
-    location:"",
-    userName: "",
+    activity:{}
+  },
+  joindata:{
+    activity_id:"",
+    user_name:"",
+    form_id:"",
   },
   statusTap:function(e){
      var curType =  e.currentTarget.dataset.index;
@@ -21,13 +21,22 @@ Page({
   onLoad:function(options){
     // 生命周期函数--监听页面加载
     var that = this;
-    console.log('onLoad')
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userName: userInfo.nickName
-      })
-    });
+    var id = decodeURIComponent(options.scene);
+    if (id == 'undefined') {
+      id = options.id;
+    }
+    if (id != undefined && id != 'undefined') {
+      app.getDetail(id, 'activity', function (res) {
+        that.joindata.activity_id = id;
+        that.setData({
+          activity: res.data
+        });
+        app.getUserInfo(function (userInfo) {
+          //更新数据
+          that.joindata.user_name = userInfo.nickName;
+        });
+      });
+    }
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
@@ -50,44 +59,15 @@ Page({
   
   },
   formSubmit: function(e) {
-    var formId = e.detail.formId;
-    if (!this.data.title || this.data.title.trim() == ''){
+    var joindata = this.joindata;
+    joindata.form_id = e.detail.formId;
+    var shorturl = "/activity/join.php";
+    app.saveData(joindata, shorturl, function(res){
       wx.showModal({
         title: '提示',
-        content: '请输入活动名称'
+        content: res['retmsg']
       })
-      return;
-    }
-    if (!this.data.detail || this.data.detail.trim() == '') {
-      wx.showModal({
-        title: '提示',
-        content: '请输入活动内容'
-      })
-      return;
-    }
-    if (!this.data.location || this.data.location.trim() == '') {
-      wx.showModal({
-        title: '提示',
-        content: '请输入活动地点'
-      })
-      return;
-    }
-    if (!this.data.userName || this.data.userName.trim() == '') {
-      wx.showModal({
-        title: '提示',
-        content: '请输入发布人'
-      })
-      return;
-    }
-    app.addActivity(this.data, formId, function(res){
-      if (res.data== 0){
-          wx.showModal({
-            title: '提示',
-            content: '活动创建成功'
-          })
-      }
     });
-    //app.sendTplMsg(e.detail.formId, '你哪里了');
   },
   onShareAppMessage: function (res) {
     if (res.from === 'button') {

@@ -184,10 +184,10 @@ App({
       }
     });
   },
-  getContact: function (id, cb) {
+  getDetail: function (id, table, cb) {
     var that = this;
     wx.request({
-      url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/area/detail.php'),
+      url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/'+ table +'/detail.php'),
       data: {
         id: id
       },
@@ -256,11 +256,28 @@ App({
             detail: data.detail,
             date: data.date,
             time: data.time,
-            formId: formId
+            formId: formId,
+            userName: data.userName,
+            location: data.location
           },
           success: function (res) {
             var data = res.data;
             cb(data);
+          }
+        })
+      }
+    });
+  },
+  saveData: function (data, shorturl, cb) {
+    var that = this;
+    wx.login({
+      success: function (res) {
+        data.code = res.code;
+        wx.request({
+          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + shorturl),
+          data: data,
+          success: function (res) {
+            cb(res.data);
           }
         })
       }
