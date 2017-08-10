@@ -21,7 +21,7 @@
 }
 
 .line{
-    height: 1rpx;
+    height: 2rpx;
     background-color: #f0eff5;
     position: relative;
     margin-left: 30rpx;
@@ -59,8 +59,8 @@
 }
 
 .right_icon_img{ 
-    height: 30rpx;
-    width: 30rpx;
+    height: 24rpx;
+    width: 24rpx;
 }
 
 .wx-head-img{

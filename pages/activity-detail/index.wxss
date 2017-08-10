@@ -21,7 +21,7 @@
 }
 
 .line{
-    height: 1rpx;
+    height: 2rpx;
     background-color: #f0eff5;
     position: relative;
     margin-left: 30rpx;
@@ -103,15 +103,13 @@
 }
 
 .wxappcode{
-    margin-top: 20rpx;
     width: 100%;
     text-align: center;
     background-color: #fff;
 }
 
 .wxappcode-img{
-    margin-top: 20rpx;
+    margin-top: 50rpx;
     width: 300rpx;
     height: 300rpx;
 }
-

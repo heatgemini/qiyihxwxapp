@@ -24,7 +24,7 @@
 
     <view class="ideas_cls">
       <block wx:for="{{ideas}}">
-        <view class="content_cls" bindtap="wxappcontact">
+        <view class="content_cls" data-url="{{item.url}}" bindtap="redirpage">
           <image class="idea_img" src="{{item.picurl}}"></image> 
           <view class="ideas_bar">
               <label class="idea_title">{{item.name}}</label>

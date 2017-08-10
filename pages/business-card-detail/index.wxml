@@ -64,7 +64,7 @@
     </view>
 
     <view class="wxappcode">
-      <image class="wxappcode-img" src="http://www.qiyihx.com/api/wxapp/getWxacodeUnlimit.php?scene={{wxappcontact.id}}&page=pages/business-card/index"></image>
+      <image class="wxappcode-img" src="https://qiyihx.cn/api/wxapp/getWxacodeUnlimit.php?scene={{wxappcontact.id}}&page=pages/business-card/index"></image>
     </view>
 
 </view>

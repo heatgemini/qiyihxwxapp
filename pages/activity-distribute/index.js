@@ -54,28 +54,32 @@ Page({
     if (!this.data.title || this.data.title.trim() == ''){
       wx.showModal({
         title: '提示',
-        content: '请输入活动名称'
+        content: '请输入活动名称',
+        showCancel: false
       })
       return;
     }
     if (!this.data.detail || this.data.detail.trim() == '') {
       wx.showModal({
         title: '提示',
-        content: '请输入活动内容'
+        content: '请输入活动内容',
+        showCancel: false
       })
       return;
     }
     if (!this.data.location || this.data.location.trim() == '') {
       wx.showModal({
         title: '提示',
-        content: '请输入活动地点'
+        content: '请输入活动地点',
+        showCancel: false
       })
       return;
     }
     if (!this.data.userName || this.data.userName.trim() == '') {
       wx.showModal({
         title: '提示',
-        content: '请输入发布人'
+        content: '请输入发布人',
+        showCancel: false
       })
       return;
     }
@@ -83,29 +87,13 @@ Page({
       if (res.data== 0){
           wx.showModal({
             title: '提示',
-            content: '活动创建成功'
+            content: '活动创建成功',
+            showCancel: false
           })
       }
     });
-    //app.sendTplMsg(e.detail.formId, '你哪里了');
   },
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-    return {
-      title: '开启你的幻想旅行',
-      path: '/pages/discover/index',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
-  },
-   bindDateChange: function (e) {
+  bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value

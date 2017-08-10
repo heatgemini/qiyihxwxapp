@@ -80,6 +80,7 @@ Page({
         wx.showModal({
           title: '提示',
           content: '请先编辑通讯录',
+          showCancel: false
         })
       }else{
         if (wx.vibrateLong) {
@@ -109,6 +110,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: '请先编辑通讯录',
+        showCancel: false
       })
     }  
   },

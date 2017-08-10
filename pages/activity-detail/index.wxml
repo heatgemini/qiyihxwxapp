@@ -29,10 +29,15 @@
          <view class="line_cls">
           <text class="line_key_cls">发布人</text>
           <text class="line_val_cls">{{activity.user_name}}</text>
-        </view>
+        </view>     
     </view>
+
     <view class="btn-area">
       <button formType="submit">立即报名</button>
+    </view>
+
+    <view class="wxappcode">
+      <image class="wxappcode-img" src="https://qiyihx.cn/api/wxapp/getWxacodeUnlimit.php?scene={{activity.id}}&page=pages/activity-detail/index"></image>
     </view>
   </form>
 </view>

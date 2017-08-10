@@ -1,14 +1,14 @@
 {
   "pages":[
-    "pages/activity-list/index",
+    
+    "pages/discover/index",
+    "pages/me/index","pages/activity-list/index",
     "pages/activity-detail/index",
     "pages/activity-distribute/index",
     "pages/activity-edit/index",
-    "pages/discover/index",
     "pages/business-card/index",
     "pages/business-card-detail/index",
-    "pages/business-card-edit/index",
-    "pages/me/index",
+    "pages/business-card-edit/index", 
     "pages/goods-details/index",
     "pages/shop-cart/index",
     "pages/to-pay-order/index",

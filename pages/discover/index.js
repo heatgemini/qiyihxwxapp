@@ -23,7 +23,7 @@ Page({
     console.log('onLoad')
     var that = this;
     wx.request({
-      url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/random.php'),
+      url: app.globalData.requestUrl + '/area/random.php',
       data: {
         type: '1',
         status: '1'
@@ -35,10 +35,10 @@ Page({
       }
     });
     wx.request({
-      url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/list.php'),
+      url: app.globalData.requestUrl + '/banner/list.php',
       data: {
         type: '1',
-        status: '1'
+      //  status: '1'
       },
       success: function (res) {
         that.setData({
@@ -96,7 +96,7 @@ Page({
     if (e.currentTarget.dataset.id != 0) {
       var that = this;
       wx.request({
-        url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/random.php'),
+        url: app.globalData.requestUrl + '/area/random.php',
         data: {
           type: '1',
           id: e.currentTarget.dataset.id,
@@ -110,9 +110,9 @@ Page({
       })
     }
   },
-  wxappcontact: function(e){
+  redirpage: function(e){
     wx.navigateTo({
-      url: "/pages/business-card/index"
+      url: e.currentTarget.dataset.url
     })
   },
   settools: function(e){

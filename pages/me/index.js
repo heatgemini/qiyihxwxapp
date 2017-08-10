@@ -89,7 +89,8 @@ Page({
       // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
       wx.showModal({
         title: '提示',
-        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。',
+        showCancel: false
       })
     }
   },
@@ -98,12 +99,14 @@ Page({
       var res = wx.getSystemInfoSync();
       wx.showModal({
         title: '提示',
-        content: '手机型号 : ' + res.model + '\n操作系统版本 : ' + res.system
+        content: '手机型号 : ' + res.model + '\n操作系统版本 : ' + res.system,
+        showCancel: false
       })
     } catch (e) {
       wx.showModal({
         title: '提示',
-        content: '获取失败，请重试'
+        content: '获取失败，请重试',
+        showCancel: false
       })
     }
   }, 
@@ -112,7 +115,8 @@ Page({
       success: function (res) {
         wx.showModal({
           title: '提示',
-          content: res.scanType+" : " + res.result
+          content: res.scanType+" : " + res.result,
+          showCancel: false
         })
       }
     }) 
@@ -138,6 +142,11 @@ Page({
   contact: function(e){
     wx.navigateTo({
       url: "/pages/business-card-detail/index"
+    })
+  },
+  activity: function(e){
+    wx.navigateTo({
+      url: "/pages/activity-list/index?from=me"
     })
   }
 })

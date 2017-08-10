@@ -74,7 +74,7 @@ Page({
     })
     */
     wx.request({
-      url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/area/list.php'),
+      url: app.globalData.requestUrl + '/area/list.php',
       data: {
         type: '1'
       },

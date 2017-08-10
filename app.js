@@ -3,8 +3,7 @@ App({
   globalData: {
     userInfo: null,
     subDomain: "mall",
-    requestUrl: "https://wxapi.hotapp.cn/proxy/?appkey=hotapp2427615&url=URL",
-    apiDomain: "http://qiyihx.com/api"
+    requestUrl: "https://qiyihx.cn/api"
   },
   onLaunch: function () {
     var that = this;
@@ -106,7 +105,7 @@ App({
       success: function (res) {
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.request({
-          url: that.globalData.requestUrl.replace('URL', 'http://qiyihx.com/api/wxapp/sendTplMsg.php?code=' + code + '&form_id=' + formId),
+          url: that.globalData.requestUrl+'/wxapp/sendTplMsg.php?code=' + code + '&form_id=' + formId,
           success: function (res) {
             var result = res.data.result;
             console.log(res.data);
@@ -129,10 +128,8 @@ App({
           success(res) {
             const encryptedData = encodeURIComponent(res.encryptedData);
             const iv = encodeURIComponent(res.iv);
-            var url = 'http://qiyihx.com/api/wxapp/wxRunData.php?code=' + code + '&encryptedData=' + encryptedData + '&iv=' + iv;
-            url = that.globalData.requestUrl.replace('URL', url);  
             wx.request({
-              url: url,
+              url: that.globalData.requestUrl + '/wxapp/wxRunData.php?code=' + code + '&encryptedData=' + encryptedData + '&iv=' + iv,
               success: function (res) {
                 var result = res.data;
                 console.log(result);
@@ -151,7 +148,7 @@ App({
       success: function (res) {
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.request({
-          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/area/save.php'),
+          url: that.globalData.requestUrl+'/area/save.php',
           data: {
             code: code,
             key: key,
@@ -172,7 +169,7 @@ App({
       success: function (res) {
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.request({
-          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/area/detailByCode.php'),
+          url: that.globalData.requestUrl+ '/area/detailByCode.php',
           data: {
             code: code
           },
@@ -187,7 +184,7 @@ App({
   getDetail: function (id, table, cb) {
     var that = this;
     wx.request({
-      url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/'+ table +'/detail.php'),
+      url: that.globalData.requestUrl + '/'+ table +'/detail.php',
       data: {
         id: id
       },
@@ -249,7 +246,7 @@ App({
       success: function (res) {
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.request({
-          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + '/activity/save.php'),
+          url: that.globalData.requestUrl + '/activity/save.php',
           data: {
             code : code,
             title : data.title,
@@ -274,7 +271,7 @@ App({
       success: function (res) {
         data.code = res.code;
         wx.request({
-          url: that.globalData.requestUrl.replace('URL', that.globalData.apiDomain + shorturl),
+          url: that.globalData.requestUrl + shorturl,
           data: data,
           success: function (res) {
             cb(res.data);

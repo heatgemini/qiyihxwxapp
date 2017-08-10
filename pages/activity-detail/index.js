@@ -65,7 +65,8 @@ Page({
     app.saveData(joindata, shorturl, function(res){
       wx.showModal({
         title: '提示',
-        content: res['retmsg']
+        content: res['retmsg'],
+        showCancel: false
       })
     });
   },
@@ -75,8 +76,8 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '开启你的幻想旅行',
-      path: '/pages/discover/index',
+      title: '我发起了一项活动【' + this.data.activity.title +'】,赶紧来报名吧',
+      path: '/pages/activity-detail/index?id=' + this.data.activity.id,
       success: function (res) {
         // 转发成功
       },

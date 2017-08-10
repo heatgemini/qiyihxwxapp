@@ -54,7 +54,7 @@
         </view>
     </view>
     <view class="btn-area">
-      <button formType="submit">创建</button>
+      <button formType="submit">我要发布</button>
     </view>
   </form>
 </view>

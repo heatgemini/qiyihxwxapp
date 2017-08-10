@@ -20,18 +20,44 @@ Page({
   },
   onLoad:function(options){
     var that = this;
-    wx.request({
-      url: app.globalData.requestUrl.replace('URL', app.globalData.apiDomain + '/activity/list.php'),
-      data: {
-        status: '1'
-      },
-      success: function (res) {
-        console.log(res.data.data);
-        that.setData({
-          activity: res.data.data
-        });
-      }
+    this.setData({
+      from: options.from
     });
+    var code = "";
+    if (options.from == 'me'){
+      console.log('from me');
+      wx.login({
+        success: function (res) {
+          code = res.code;
+          wx.request({
+            url: 'https://qiyihx.cn/api/activity/list.php',
+            data: {
+              code: code
+            },
+            success: function (res) {
+              console.log(res.data.data);
+              that.setData({
+                activity: res.data.data
+              });
+            }
+          });
+        }
+      });
+    }else{
+      wx.request({
+        url: 'https://qiyihx.cn/api/activity/list.php',
+        data: {
+          status: '1'
+        },
+        success: function (res) {
+          console.log(res.data.data);
+          that.setData({
+            activity: res.data.data
+          });
+        }
+      });
+    }
+    
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
@@ -80,5 +106,10 @@ Page({
         // 转发失败
       }
     }
+  },
+  distribute : function(e){
+    wx.navigateTo({
+      url: "/pages/activity-distribute/index"
+    })
   }
 })
